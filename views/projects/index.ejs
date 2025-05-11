@@ -1,0 +1,77 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1 class="mb-0">My Projects</h1>
+  <a href="/projects/new" class="btn btn-primary">
+    <i class="fas fa-plus me-1"></i> New Project
+  </a>
+</div>
+
+<% if (projects.length === 0) { %>
+  <div class="alert alert-info text-center py-5">
+    <div class="display-6 mb-3">
+      <i class="fas fa-folder-open"></i>
+    </div>
+    <h4>No projects found</h4>
+    <p class="mb-4">You haven't created any projects yet.</p>
+    <a href="/projects/new" class="btn btn-primary">Create Your First Project</a>
+  </div>
+<% } else { %>
+  <div class="row g-4">
+    <% projects.forEach(project => { %>
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+              <h5 class="card-title mb-0 text-truncate"><%= project.projectName %></h5>
+              <% 
+                let statusClass = '';
+                switch(project.status) {
+                  case 'Not Started':
+                    statusClass = 'bg-secondary';
+                    break;
+                  case 'In Progress':
+                    statusClass = 'bg-primary';
+                    break;
+                  case 'Completed':
+                    statusClass = 'bg-success';
+                    break;
+                  case 'On Hold':
+                    statusClass = 'bg-warning';
+                    break;
+                  default:
+                    statusClass = 'bg-secondary';
+                }
+              %>
+              <span class="badge <%= statusClass %>"><%= project.status %></span>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-text text-truncate"><%= project.description %></p>
+            <div class="d-flex justify-content-between mb-2">
+              <small class="text-muted">
+                <i class="fas fa-calendar-alt me-1"></i> Deadline:
+              </small>
+              <small class="text-<%= new Date(project.deadline) < new Date() ? 'danger' : 'muted' %>">
+                <%= new Date(project.deadline).toLocaleDateString() %>
+              </small>
+            </div>
+            <div class="d-flex justify-content-between">
+              <small class="text-muted">
+                <i class="fas fa-users me-1"></i> Team:
+              </small>
+              <small class="text-muted">
+                <%= project.teamMembers.split(',').length %> members
+              </small>
+            </div>
+          </div>
+          <div class="card-footer bg-white border-top-0">
+            <div class="d-grid gap-2">
+              <a href="/projects/<%= project._id %>" class="btn btn-outline-primary btn-sm">
+                <i class="fas fa-eye me-1"></i> View Details
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+<% } %>

@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+  <div class="col-md-10 col-lg-8">
+    <div class="text-center mb-5">
+      <div class="display-4 mb-3">
+        <i class="fas fa-tasks text-primary"></i>
+      </div>
+      <h1 class="display-5 fw-bold mb-3">Project Management System</h1>
+      <p class="lead mb-4">Organize, track, and manage your projects efficiently with our simple yet powerful project management tool.</p>
+      
+      <% if (!isAuthenticated) { %>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <a href="/register" class="btn btn-primary btn-lg px-4 gap-3">Get Started</a>
+          <a href="/login" class="btn btn-outline-secondary btn-lg px-4">Login</a>
+        </div>
+      <% } else { %>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <a href="/projects" class="btn btn-primary btn-lg px-4 gap-3">My Projects</a>
+          <a href="/projects/new" class="btn btn-outline-secondary btn-lg px-4">Create New Project</a>
+        </div>
+      <% } %>
+    </div>
+    
+    <div class="row g-4 mb-5">
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body text-center">
+            <div class="mb-3">
+              <i class="fas fa-clipboard-list text-primary fa-3x"></i>
+            </div>
+            <h5 class="card-title">Organize Projects</h5>
+            <p class="card-text">Create and organize your projects with descriptions, deadlines, and team members.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body text-center">
+            <div class="mb-3">
+              <i class="fas fa-users text-primary fa-3x"></i>
+            </div>
+            <h5 class="card-title">Manage Teams</h5>
+            <p class="card-text">Easily assign team members to your projects and track their contributions.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body text-center">
+            <div class="mb-3">
+              <i class="fas fa-chart-line text-primary fa-3x"></i>
+            </div>
+            <h5 class="card-title">Track Progress</h5>
+            <p class="card-text">Monitor project status and keep track of deadlines to ensure timely completion.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
